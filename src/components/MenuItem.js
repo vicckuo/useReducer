@@ -1,5 +1,7 @@
+import { MenuStyleItem } from "./MenuItemStyle"
+
 export default function MenuItem(props) {
     return (
-        <li>{props.children}</li>
+        <MenuStyleItem color={"blue"}>{props.children}</MenuStyleItem>
     )
 }
