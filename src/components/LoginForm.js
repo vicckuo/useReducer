@@ -1,31 +1,23 @@
 // 引入useRef
-import React, { useRef } from "react";
+import React, { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 const LoginForm = () => {
-    // 建立用來綁定input的變數
-    const accountRef = useRef(undefined);
-    const passwordRef = useRef(undefined);
+    const {
+        accountContext,
+        setAccountContext
+    } = useContext(LoginContext)
 
-    // 為了方便操作，建立一個array來管理這些ref
-    const refArr = useRef([accountRef, passwordRef]);
-
-    return ( // 將剛剛創立的變數綁在對應的位置
+    return (
         <>
             <input
                 type="text"
-                name="account"
-                ref={accountRef}
+                value={accountContext}
+                onChange={(e) => {
+                    setAccountContext(e.target.value)
+                }}
             />
-            <input
-                type="text"
-                name="password"
-                ref={passwordRef}
-            />
-            <button onClick={() => {
-                refArr.current.forEach((item) => {
-                    console.log(item.current.name + " is " + item.current.value);
-                })
-            }}>提交</button>
+            <div>目前account:{accountContext}</div>
         </>
     )
 }
